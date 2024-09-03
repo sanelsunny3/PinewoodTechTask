@@ -1,0 +1,44 @@
+﻿@page "{id:int}"
+@model CustomerUI.Pages.EditCustomerModel
+@{
+    ViewData["Title"] = "Edit Customer";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+        <input asp-for="NewCustomer.Id" type="hidden" />
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="NewCustomer.Name"></label>
+                <input asp-for="NewCustomer.Name" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="NewCustomer.Address"></label>
+                <input asp-for="NewCustomer.Address" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="NewCustomer.Country"></label>
+                <input asp-for="NewCustomer.Country" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="NewCustomer.City"></label>
+                <input asp-for="NewCustomer.City" cl class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="NewCustomer.Phone"></label>
+                <input asp-for="NewCustomer.Phone" class="form-control" />
+            </div>
+        </div>
+        <br />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a class="btn btn-default" href="/Customer">Cancel</a>
+    </form>

@@ -1,0 +1,83 @@
+﻿@page
+@model CustomerUI.Pages.CustomerModel
+@{
+	ViewData["Title"] = "Customers";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+    <label asp-for="NewCustomer.Name" class="control-label"></label>
+    <input asp-for="NewCustomer.Name" class="form-control" />
+    <span asp-validation-for="NewCustomer.Name" class="text-danger"></span>   
+    <div class="form-group">
+        <label asp-for="NewCustomer.Address" class="control-label"></label>
+        <input asp-for="NewCustomer.Address" class="form-control" />
+        <span asp-validation-for="NewCustomer.Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NewCustomer.City" class="control-label"></label>
+        <input asp-for="NewCustomer.City" class="form-control" />
+        <span asp-validation-for="NewCustomer.City" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NewCustomer.Country" class="control-label"></label>
+        <select asp-for="NewCustomer.Country" class="form-control" id="CustomerCountry">
+            <option value="">-- Select Country --</option>
+            <option value="England">England</option>
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+        </select>
+        <span asp-validation-for="NewCustomer.Country" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NewCustomer.Phone" class="control-label"></label>
+        <input asp-for="NewCustomer.Phone" class="form-control" />
+        <span asp-validation-for="NewCustomer.Phone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+  
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">City</th>
+            <th scope="col">Country</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>               
+        @foreach (var Customer in Model.CustomerList)
+        {
+            <tr>
+                <td>@Customer.Name</td>
+                <td>@Customer.Address</td>
+                <td>@Customer.City</td>
+                <td>@Customer.Country</td>
+                <td>@Customer.Phone</td>
+                <td>
+                        <form method="get" asp-page="/EditCustomer" asp-route-id="@Customer.Id">
+                        <button class="btn btn-primary">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@Customer.Id">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
